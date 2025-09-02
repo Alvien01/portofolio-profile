@@ -1,10 +1,11 @@
 html {
   scroll-behavior: smooth;
 }
+
 section {
   width: 100%;
   max-width: 100%;
-  padding: 0; 
+  padding: 0;
   margin: 0;
 }
 
@@ -12,6 +13,37 @@ section {
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: 20px 15px; 
+  padding: 20px 15px;
   box-sizing: border-box;
+}
+
+/* ===== ANIMASI UNTUK HOME DAN ABOUT ===== */
+.home h1, 
+.home p, 
+.about h2, 
+.about p {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+
+/* delay supaya muncul bergantian */
+.home h1 {
+  animation-delay: 0.3s;
+}
+.home p {
+  animation-delay: 0.6s;
+}
+.about h2 {
+  animation-delay: 0.9s;
+}
+.about p {
+  animation-delay: 1.2s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -14,7 +14,7 @@ export class CertificatesComponent {
       title: 'Full Stack Developer Intership - Jitu Property', image: '1726059585873.jpeg',},
     { title: 'Peserta IFFES IOT - ITN Malang', image: 'Screenshot (160).png' },
     { title: 'Getting Started with Node-Red HTTP  - Indobot', image: 'Screenshot (157).png' },
-    { title: 'Coding Camp Laravel Class - HariSenin', image: 'Screenshot (158).png' },
+    { title: 'Coding Camp Laravel Class - HariSenin', image: 'CodingCamp.png' },
     { title: 'Asisten Labolatorium Mobile Programming - ITN Malang', image: 'Sertifikat Aslab.jpg' },
     { title: 'Koordinator Praktikum Pemrograman Visual - ITN Malang', image: 'Sertifikat Koor Praktikum.jpg' },
   ];
