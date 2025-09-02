@@ -1,3 +1,17 @@
 html {
   scroll-behavior: smooth;
 }
+section {
+  width: 100%;
+  max-width: 100%;
+  padding: 0; 
+  margin: 0;
+}
+
+.home, .about, .skills, .projects, .certificates, .contact {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 20px 15px; 
+  box-sizing: border-box;
+}

@@ -4,6 +4,8 @@
   text-align: center;
   padding: 2rem 1rem;
   margin-top: auto;
+  width: 100%; // full lebar layar
+  box-sizing: border-box;
 
   p {
     margin: 0;
@@ -30,14 +32,22 @@
   }
 
   @media (max-width: 768px) {
+    padding: 1rem; // lebih compact di mobile
+
     p {
       font-size: 0.85rem;
+      margin-bottom: 0.5rem;
     }
 
     .social-links {
       gap: 1rem;
+      flex-wrap: wrap; // biar rapi kalau link banyak
+      justify-content: space-between; // bagi rata kiri-kanan
+      width: 100%; // memenuhi layar
 
       a {
+        flex: 1;
+        text-align: center;
         font-size: 0.9rem;
       }
     }
