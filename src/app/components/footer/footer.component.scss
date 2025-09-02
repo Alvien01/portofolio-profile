@@ -1,0 +1,45 @@
+.footer {
+  background: #0f2027;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: auto;
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #00c4ff;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    p {
+      font-size: 0.85rem;
+    }
+
+    .social-links {
+      gap: 1rem;
+
+      a {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

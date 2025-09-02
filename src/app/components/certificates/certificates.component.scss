@@ -1,0 +1,71 @@
+.certificates {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  background: #ffffff;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: #222;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    li {
+      background: #f9fafc;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #333;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      // ikon sebelum teks
+      &::before {
+        content: "📜";
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+      }
+
+      padding-left: 3rem; // beri jarak agar teks tidak menimpa ikon
+
+      &:hover {
+        transform: translateX(5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  // responsive
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 2rem;
+    }
+
+    ul li {
+      font-size: 1rem;
+      padding: 0.9rem 1.2rem;
+      padding-left: 2.5rem;
+
+      &::before {
+        font-size: 1rem;
+        left: 0.8rem;
+      }
+    }
+  }
+}
