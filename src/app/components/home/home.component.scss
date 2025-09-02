@@ -23,6 +23,47 @@
       transform: scale(1.05);
     }
   }
+  .button-group {
+    display: flex;
+    gap: 1rem; /* jarak antar tombol */
+    justify-content: center;
+    flex-wrap: wrap; /* biar responsif di layar kecil */
+    margin-top: 1rem;
+  }
+
+  .view-btn,
+  .download-btn {
+    background: #00c4ff;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    padding: 0.75rem 2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 196, 255, 0.3);
+
+    &:hover {
+      background: #00a6d6;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 196, 255, 0.4);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(0, 196, 255, 0.2);
+    }
+  }
+
+  /* responsive untuk mobile */
+  @media (max-width: 768px) {
+    .button-group {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
 
   h1 {
     font-size: 2.5rem;

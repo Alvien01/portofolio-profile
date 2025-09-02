@@ -1,8 +1,20 @@
 <div class="certificates">
   <h2>Certificates</h2>
-  <ul>
-    <li>Full Stack Developer - Dicoding</li>
-    <li>Frontend Angular - Udemy</li>
-    <li>Laravel Expert - Progate</li>
-  </ul>
+
+  <div class="cert-grid">
+    <div class="cert-card" *ngFor="let cert of certificates">
+      <img [src]="cert.image" [alt]="cert.title" class="cert-img" />
+      <h3>{{ cert.title }}</h3>
+      <button (click)="openModal(cert)">Lihat Detail</button>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="selectedCertificate" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <img [src]="selectedCertificate.image" [alt]="selectedCertificate.title" />
+      <h3>{{ selectedCertificate.title }}</h3>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,16 @@
 <div class="home">
-  <img src="profile.jpg" alt="Profile" class="profile-img">
+  <img src="profile.jpg" alt="Profile" class="profile-img" />
   <h1>Hi, I'm Alfin</h1>
   <p>Web Developer | SEO Analyst | Content Writer</p>
-  <button routerLink="/projects">View My Work</button>
+
+  <!-- Container tombol -->
+  <div class="button-group">
+    <button (click)="scrollTo('projects')" class="view-btn">
+      View My Work
+    </button>
+
+    <a href="CV-Alfin-Ardiansyah.pdf" download class="download-btn"
+      >Download CV</a
+    >
+  </div>
 </div>
