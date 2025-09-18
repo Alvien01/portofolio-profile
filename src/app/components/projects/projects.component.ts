@@ -46,21 +46,46 @@ export class ProjectsComponent {
       description:
         'Website Blog built with Laravel 8 for Backend & Angular JS for Frontend',
       demoLink: 'https://demo.com',
-      images: ['Screenshot (168).png','Screenshot (167).png'],
+      images: ['Screenshot (168).png', 'Screenshot (167).png'],
     },
-     {
+    {
       title: 'BGentertaiment',
       description:
         'Entertaiment Profile Website build with Laravel 10 & Breeze with Monolithic Architecture',
       demoLink: 'https://demo.com',
-      images: ['Screenshot (169).png','Screenshot (170).png','Screenshot (171).png'],
+      images: [
+        'Screenshot (169).png',
+        'Screenshot (170).png',
+        'Screenshot (171).png',
+      ],
     },
-         {
+    {
       title: 'Sistem Informasi CRM ',
       description:
         'Sistem Informasi CRM build with Laravel 8 with Monolithic Architecture',
       demoLink: 'https://demo.com',
       images: ['1685954946989.jpeg'],
+    },
+    {
+      title: 'Glow Aesthetics Clinic',
+      description:
+        'Clinic Profile Website build with Wordpress 6.8.2 & Kedence Pro Themes for Client',
+      demoLink: 'https://demo.com',
+      images: ['glow.indristudio.com_ (2).png', 'glow.indristudio.com_gallery_.png'],
+    },
+    {
+      title: 'Manajemen User',
+      description:
+        'User Manajemen & Payment Gateway build with Golang for Backend & Vue JS Vite as Frontend',
+      demoLink: 'https://demo.com',
+      images: ['WhatsApp Image 2025-09-17 at 14.21.43_5edee526.jpg', 'localhost_5173_login.png'],
+    },
+        {
+      title: 'BGentertaiment Landing',
+      description:
+        'Landing Page build with Astro JS & Tailwind CSS',
+      demoLink: 'https://demo.com',
+      images: ['bgcosentertaiment.vercel.app_.png', 'bgcosentertaiment.vercel.app_ (1).png'],
     },
   ];
   selectedProject: Project | null = null;
