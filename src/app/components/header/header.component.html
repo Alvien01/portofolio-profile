@@ -1,27 +1,8 @@
-<nav class="navbar">
-  <!-- menu link biasa (tampil di desktop) -->
-  <div class="nav-links">
-    <a (click)="scrollTo('home')">Home</a>
-    <a (click)="scrollTo('about')">About</a>
-    <a (click)="scrollTo('skills')">Skills</a>
-    <a (click)="scrollTo('projects')">Projects</a>
-    <a (click)="scrollTo('certificates')">Certificates</a>
-    <a (click)="scrollTo('contact')">Contact</a>
-  </div>
-
-  <!-- tombol hamburger (hanya muncul di mobile, ada di kanan) -->
-  <button class="menu-toggle" (click)="toggleMenu()">
-    ☰
-  </button>
-
-  <!-- menu offcanvas (untuk mobile) -->
-  <div class="offcanvas" [class.open]="isMenuOpen">
-    <button class="close-btn" (click)="toggleMenu()">×</button>
-    <a (click)="scrollTo('home'); toggleMenu()">Home</a>
-    <a (click)="scrollTo('about'); toggleMenu()">About</a>
-    <a (click)="scrollTo('skills'); toggleMenu()">Skills</a>
-    <a (click)="scrollTo('projects'); toggleMenu()">Projects</a>
-    <a (click)="scrollTo('certificates'); toggleMenu()">Certificates</a>
-    <a (click)="scrollTo('contact'); toggleMenu()">Contact</a>
-  </div>
+<nav>
+  <a (click)="scrollTo('home')">Home</a>
+  <a (click)="scrollTo('about')">About</a>
+  <a (click)="scrollTo('skills')">Skills</a>
+  <a (click)="scrollTo('projects')">Projects</a>
+  <a (click)="scrollTo('certificates')">Certificates</a>
+  <a (click)="scrollTo('contact')">Contact</a>
 </nav>

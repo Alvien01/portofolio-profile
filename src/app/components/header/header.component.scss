@@ -1,4 +1,4 @@
-.navbar {
+nav {
   position: fixed;
   top: 0;
   left: 0;
@@ -6,111 +6,50 @@
   padding: 1rem 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background: rgba(20, 20, 20, 0.8);
+  gap: 2rem;
+  background: rgba(20, 20, 20, 0.8); // transparan gelap
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
-  .logo {
+  a {
     color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
 
-  /* link navbar (desktop) */
-  .nav-links {
-    display: flex;
-    gap: 2rem;
+    &:hover {
+      color: #00c4ff;
+    }
 
-    a {
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      position: relative;
-      transition: color 0.3s ease;
+    // efek underline animasi
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background: #00c4ff;
+      transition: width 0.3s ease;
+    }
 
-      &:hover {
-        color: #00c4ff;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: -4px;
-        width: 0%;
-        height: 2px;
-        background: #00c4ff;
-        transition: width 0.3s ease;
-      }
-
-      &:hover::after {
-        width: 100%;
-      }
+    &:hover::after {
+      width: 100%;
     }
   }
 
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    right: 1rem;
-    top: 1rem;
-  }
-
-  .offcanvas {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100vh;
-    background: #111;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    transition: right 0.3s ease-in-out;
-    z-index: 2000;
-
-    &.open {
-      right: 0;
-    }
-
-    .close-btn {
-      align-self: flex-end;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
-      margin-bottom: 2rem;
-    }
-
-    a {
-      color: #fff;
-      font-size: 1.1rem;
-      text-decoration: none;
-      margin: 1rem 0;
-      transition: color 0.3s ease;
-
-      &:hover {
-        color: #00c4ff;
-      }
-    }
-  }
-
-  /* ===== Responsive ===== */
+  // responsive untuk mobile
   @media (max-width: 768px) {
-    .nav-links {
-      display: none; // sembunyikan menu biasa
-    }
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
 
-    .menu-toggle {
-      display: block; // tampilkan tombol hamburger
+    a {
+      font-size: 0.9rem;
     }
   }
 }
