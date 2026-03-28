@@ -1,16 +1,38 @@
 <div class="home">
-  <img src="profile.jpg" alt="Profile" class="profile-img" />
-  <h1>Hi, I'm Alfin</h1>
-  <p>Web Developer | SEO Analyst | Content Writer</p>
+  <!-- Animated Background Orbs -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
 
-  <!-- Container tombol -->
-  <div class="button-group">
-    <button (click)="scrollTo('projects')" class="view-btn">
-      View My Work
-    </button>
+  <div class="hero-content">
+    <div class="profile-container" data-aos="zoom-in" data-aos-duration="1000">
+      <img src="profile.jpg" alt="Profile" class="profile-img" />
+    </div>
+    
+    <div class="typing-wrapper">
+      <h1 class="gradient-text hero-typing">Hi, I'm Alfin Ardiansyah</h1>
+    </div>
+    
+    <p data-aos="fade-up" data-aos-delay="400">
+      Crafting premium digital experiences through 
+      <span class="highlight text-gradient-1">Web Development</span>, 
+      <span class="highlight text-gradient-2">SEO</span>, and 
+      <span class="highlight text-gradient-3">Creative Content Blog</span>.
+    </p>
 
-    <a href="CV-Alfin-Ardiansyah.pdf" download class="download-btn"
-      >Download CV</a
-    >
+    <div class="button-group" data-aos="fade-up" data-aos-delay="600">
+      <button (click)="scrollTo('projects')" class="view-btn sweep-anim">
+        Explore Projects <span class="arrow">&rarr;</span>
+      </button>
+
+      <a href="CV-Alfin-Ardiansyah.pdf" download class="download-btn">
+        Get Resume
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" (click)="scrollTo('about')" data-aos="fade-in" data-aos-delay="1200">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
   </div>
 </div>

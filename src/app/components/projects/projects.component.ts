@@ -6,6 +6,7 @@ interface Project {
   description: string;
   demoLink: string;
   images: string[];
+  tech: string[];
 }
 
 @Component({
@@ -19,73 +20,66 @@ export class ProjectsComponent {
   projects: Project[] = [
     {
       title: 'Portfolio Website',
-      description: 'My personal portfolio built in Angular JS.',
+      description: 'My personal portfolio built in Angular.',
       demoLink: 'https://demo.com',
       images: ['Screenshot (161).png', 'Screenshot (162).png'],
+      tech: ['Angular', 'TypeScript', 'SCSS']
     },
     {
       title: 'Ruangbacaku',
-      description:
-        'Website Blog built with Laravel 8 with Monolithic Architecture.',
+      description: 'Website Blog built with Laravel 8 with Monolithic Architecture.',
       demoLink: 'https://ruangbacaku.com/',
-      images: [
-        '1725718114207.jpeg',
-        'Screenshot (165).png',
-        'Screenshot (166).png',
-      ],
+      images: ['1725718114207.jpeg', 'Screenshot (165).png', 'Screenshot (166).png'],
+      tech: ['Laravel', 'MySQL', 'Bootstrap']
     },
     {
       title: 'ERP Laravel',
-      description:
-        'ERP system built with Laravel 8 with Monolithic Architecture.',
+      description: 'ERP system built with Laravel 8 with Monolithic Architecture.',
       demoLink: 'https://demo.com',
       images: ['Screenshot (156).png'],
+      tech: ['Laravel', 'PostgreSQL', 'Livewire']
     },
     {
       title: 'Karmarbaca',
-      description:
-        'Website Blog built with Laravel 8 for Backend & Angular JS for Frontend',
+      description: 'Website Blog built with Laravel Backend & Angular Frontend.',
       demoLink: 'https://demo.com',
       images: ['Screenshot (168).png', 'Screenshot (167).png'],
+      tech: ['Laravel', 'Angular', 'REST API']
     },
     {
       title: 'BGentertaiment',
-      description:
-        'Entertaiment Profile Website build with Laravel 10 & Breeze with Monolithic Architecture',
+      description: 'Entertainment Profile Website built with Laravel 10.',
       demoLink: 'https://demo.com',
-      images: [
-        'Screenshot (169).png',
-        'Screenshot (170).png',
-        'Screenshot (171).png',
-      ],
+      images: ['Screenshot (169).png', 'Screenshot (170).png', 'Screenshot (171).png'],
+      tech: ['Laravel', 'Breeze', 'Tailwind']
     },
     {
-      title: 'Sistem Informasi CRM ',
-      description:
-        'Sistem Informasi CRM build with Laravel 8 with Monolithic Architecture',
+      title: 'Sistem Informasi CRM',
+      description: 'Sistem Informasi CRM built with Laravel 8.',
       demoLink: 'https://demo.com',
       images: ['1685954946989.jpeg'],
+      tech: ['Laravel', 'AdminLT', 'MySQL']
     },
     {
       title: 'Glow Aesthetics Clinic',
-      description:
-        'Clinic Profile Website build with Wordpress 6.8.2 & Kedence Pro Themes for Client',
+      description: 'Clinic Profile Website built with Wordpress.',
       demoLink: 'https://demo.com',
       images: ['glow.indristudio.com_ (2).png', 'glow.indristudio.com_gallery_.png'],
+      tech: ['Wordpress', 'Kadence', 'Elementor']
     },
     {
       title: 'Manajemen User',
-      description:
-        'User Manajemen & Payment Gateway build with Golang for Backend & Vue JS Vite as Frontend',
+      description: 'User Management & Payment Gateway built with Golang & Vue.',
       demoLink: 'https://demo.com',
       images: ['WhatsApp Image 2025-09-17 at 14.21.43_5edee526.jpg', 'localhost_5173_login.png'],
+      tech: ['Golang', 'Vue JS', 'Payment Gateway']
     },
-        {
+    {
       title: 'BGentertaiment Landing',
-      description:
-        'Landing Page build with Astro JS & Tailwind CSS',
+      description: 'Landing Page built with Astro JS & Tailwind CSS.',
       demoLink: 'https://demo.com',
       images: ['bgcosentertaiment.vercel.app_.png', 'bgcosentertaiment.vercel.app_ (1).png'],
+      tech: ['Astro JS', 'Tailwind', 'Vercel']
     },
   ];
   selectedProject: Project | null = null;

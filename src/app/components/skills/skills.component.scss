@@ -1,76 +1,121 @@
 .skills {
-  min-height: 100vh;
-  padding: 4rem 2rem;
-  background: #ffffff;
-  text-align: center;
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+
+  --marquee-gap: 4rem;
 
   h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #222;
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .skill-card {
-    background: #f9f9f9;
-    padding: 2rem 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     text-align: center;
+    margin-bottom: 5rem;
+    font-family: var(--font-heading);
+    background: linear-gradient(135deg, #ffffff 20%, var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem 0;
+    
+    /* Elegant fade on the left and right edges */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--marquee-gap);
+    width: max-content;
+    animation: scrollRight 40s linear infinite;
 
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      animation-play-state: paused;
+    }
+  }
+
+  .marquee-group {
+    display: flex;
+    gap: var(--marquee-gap);
+  }
+
+  .skill-item {
+    background: transparent;
+    transition: var(--transition-smooth);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+
+    /* Extra safety to ensure no wrapping */
+    white-space: nowrap;
+
+    &:hover {
+      transform: translateY(-10px);
+      
+      img {
+        transform: scale(1.15) rotate(5deg);
+        filter: drop-shadow(0 15px 25px rgba(0, 240, 255, 0.4));
+      }
+      
+      h3 {
+        color: var(--primary);
+      }
     }
 
     img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 1rem;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.5rem;
+      object-fit: contain;
+      transition: var(--transition-smooth);
+      filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
     }
 
     h3 {
-      font-size: 1.4rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #333;
-    }
-
-    .percentage {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #0072ff;
+      color: var(--text-main);
+      margin: 0;
     }
   }
 
-  // responsive
   @media (max-width: 768px) {
-    h2 {
-      font-size: 2rem;
-    }
-    .skill-card {
-      padding: 1.5rem 1rem;
+    padding: 5rem 1.5rem;
+    --marquee-gap: 2rem;
 
+    .marquee-container {
+      -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    }
+
+    .skill-item {
+      min-width: 100px;
+      
       img {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
       }
 
       h3 {
-        font-size: 1.2rem;
-      }
-      .percentage {
         font-size: 1rem;
       }
     }
   }
+}
+
+@keyframes scrollRight {
+  0% { transform: translateX(calc(-50% - (var(--marquee-gap) / 2))); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scrollLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - (var(--marquee-gap) / 2))); }
 }

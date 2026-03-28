@@ -1,82 +1,118 @@
 .contact {
-  min-height: 100vh;
-  padding: 4rem 2rem;
-  background: #f5f7fa;
-  text-align: center;
+  padding: 8rem 2rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 35vw;
+    height: 35vw;
+    background: var(--primary);
+    filter: blur(150px);
+    opacity: 0.08;
+    top: 20%;
+    left: -15%;
+  }
 
   h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2.5rem;
-    color: #222;
+    font-size: clamp(2rem, 5vw, 3rem);
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(135deg, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
-  form {
-    max-width: 600px;
+  .form-container {
+    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: all 0.3s ease;
-      resize: none;
+    form {
+      display: grid;
+      gap: 2rem;
 
-      &:focus {
-        border-color: #00c4ff;
-        box-shadow: 0 0 8px rgba(0, 196, 255, 0.4);
-        outline: none;
-      }
-    }
+      .form-group {
+        position: relative;
+        
+        input, textarea {
+          width: 100%;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid var(--dark-border);
+          border-radius: 20px;
+          padding: 1.5rem;
+          color: #fff;
+          font-size: 1.1rem;
+          font-family: inherit;
+          transition: var(--transition-smooth);
 
-    textarea {
-      min-height: 140px;
-    }
+          &:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1), inset 0 0 15px rgba(0, 240, 255, 0.05);
+          }
 
-    button {
-      background: #00c4ff;
-      color: #fff;
-      border: none;
-      padding: 0.9rem 2rem;
-      border-radius: 30px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 196, 255, 0.3);
+          &::placeholder {
+            color: var(--text-muted);
+            opacity: 0.6;
+          }
+        }
 
-      &:hover {
-        background: #009ec7;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0, 196, 255, 0.4);
+        textarea {
+          min-height: 180px;
+          resize: vertical;
+        }
       }
 
-      &:active {
-        transform: translateY(0);
-        box-shadow: 0 3px 10px rgba(0, 196, 255, 0.2);
+      button {
+        background: var(--primary);
+        color: #000;
+        border: none;
+        padding: 1.2rem 3rem;
+        border-radius: 100px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        width: fit-content;
+        justify-self: center;
+        margin-top: 1rem;
+        box-shadow: 0 10px 20px -5px var(--primary-glow);
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px -5px var(--primary-glow);
+          filter: brightness(1.1);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
       }
     }
   }
 
-  // responsive
   @media (max-width: 768px) {
-    h2 {
-      font-size: 2rem;
+    padding: 5rem 1.5rem;
+    
+    .form-container {
+      padding: 0;
+      border: none;
+      box-shadow: none;
     }
 
     form {
-      padding: 0 1rem;
-
-      input,
-      textarea {
-        font-size: 0.95rem;
+      gap: 1.5rem;
+      
+      button {
+        width: 100%;
       }
     }
   }

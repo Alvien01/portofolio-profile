@@ -1,8 +1,20 @@
-<nav>
-  <a (click)="scrollTo('home')">Home</a>
-  <a (click)="scrollTo('about')">About</a>
-  <a (click)="scrollTo('skills')">Skills</a>
-  <a (click)="scrollTo('projects')">Projects</a>
-  <a (click)="scrollTo('certificates')">Certificates</a>
-  <a (click)="scrollTo('contact')">Contact</a>
-</nav>
+<header class="header" [class.scrolled]="isScrolled">
+  <div class="nav-container">
+    <a (click)="scrollTo('home')" class="logo">
+      ALFIN<span>.</span>
+    </a>
+
+    <nav [class.open]="isMenuOpen">
+      <a (click)="scrollTo('home'); toggleMenu(false)">Home</a>
+      <a (click)="scrollTo('about'); toggleMenu(false)">About</a>
+      <a (click)="scrollTo('skills'); toggleMenu(false)">Skills</a>
+      <a (click)="scrollTo('projects'); toggleMenu(false)">Projects</a>
+      <a (click)="scrollTo('certificates'); toggleMenu(false)">Certificates</a>
+      <a (click)="scrollTo('contact'); toggleMenu(false)">Contact</a>
+    </nav>
+
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <lucide-icon [name]="isMenuOpen ? XIcon : MenuIcon"></lucide-icon>
+    </button>
+  </div>
+</header>
