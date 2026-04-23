@@ -81,6 +81,28 @@ export class ProjectsComponent {
       images: ['bgcosentertaiment.vercel.app_.png', 'bgcosentertaiment.vercel.app_ (1).png'],
       tech: ['Astro JS', 'Tailwind', 'Vercel']
     },
+        {
+      title: 'Makandeket',
+      description: 'a website used to search for restaurant recommendations in the area.',
+      demoLink: 'https://makandeket.com',
+      images: ['makandeket.com_.png', 'makandeket.com_restoran.png'],
+      tech: ['Laravel', 'Bootstrap 5', 'MySQL']
+    },
+        {
+      title: 'Aratu no Matsuri',
+      description: 'Landing Page & Portofolio Website Event Organizer to introduce about Aratu no Matsuri & Arashi Project. Built using NuxtJS as Frontend and ExpressJS as Backend',
+      demoLink: 'https://aratunomatsuri.vercel.app/',
+      images: ['arashi-project.vercel.app_.png'],
+      tech: ['Nuxt JS', 'Tailwind','Express JS', 'Vercel']
+    },
+    {
+      title: 'SIPETANI',
+      description: 'A website for a farmer product forecasting system using the Holt Winters & Stock Recommendation method. Built using Laravel 12.',
+      demoLink: 'https://aratunomatsuri.vercel.app/',
+      images: ['sipetani.project-kevin.my.id_dashboard.png','sipetani.project-kevin.my.id_hasil-peramalan_product_id=all&tipe_periode=bulanan.png'],
+      tech: ['Laravel', 'Tailwind','MySQL', 'Cloudfare Tunnel']
+    },
+
   ];
   selectedProject: Project | null = null;
   currentImageIndex: number = 0;
