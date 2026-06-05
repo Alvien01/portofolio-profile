@@ -36,6 +36,9 @@
       .image-overlay {
         opacity: 1;
       }
+      .card-nav-btn {
+        opacity: 1;
+      }
       .image-glow {
         opacity: 0.6;
         transform: scale(1.1);
@@ -121,6 +124,38 @@
         &:hover .icon-arrow {
           transform: translateX(5px);
         }
+      }
+
+      .card-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        background: rgba(10, 12, 16, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+        z-index: 5;
+        opacity: 0;
+
+        &:hover {
+          background: var(--primary);
+          color: #111;
+          transform: translateY(-50%) scale(1.1);
+          border-color: var(--primary);
+          box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        &.left { left: 15px; }
+        &.right { right: 15px; }
       }
     }
 
@@ -226,6 +261,16 @@
         transform: none;
         width: 100%;
         justify-content: center;
+      }
+      .card-nav-btn {
+        opacity: 1;
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+        background: rgba(10, 12, 16, 0.85);
+
+        &.left { left: 10px; }
+        &.right { right: 10px; }
       }
     }
   }

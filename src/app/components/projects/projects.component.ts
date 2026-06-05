@@ -7,6 +7,7 @@ interface Project {
   demoLink: string;
   images: string[];
   tech: string[];
+  currentImageIndex?: number;
 }
 
 @Component({
@@ -102,6 +103,14 @@ export class ProjectsComponent {
       images: ['sipetani.project-kevin.my.id_dashboard.png','sipetani.project-kevin.my.id_hasil-peramalan_product_id=all&tipe_periode=bulanan.png'],
       tech: ['Laravel', 'Tailwind','MySQL', 'Cloudfare Tunnel']
     },
+    {
+      title: 'ERP POS SaaS',
+      description: 'SaaS ERP & POS built in Laravel 13 with Livewire with MySQL Database.',
+      demoLink: '',
+      images: ['erp-project.test_login.png','erp-project.test_login (1).png', 'erp-project.test_pos.png','erp-project.test_pos (1).png'],
+      tech: ['Laravel','Livewire', 'Tailwind','MySQL']
+    },
+    
 
   ];
   selectedProject: Project | null = null;
@@ -109,7 +118,7 @@ export class ProjectsComponent {
 
   openModal(project: Project) {
     this.selectedProject = project;
-    this.currentImageIndex = 0;
+    this.currentImageIndex = project.currentImageIndex || 0;
   }
 
   closeModal() {
@@ -129,5 +138,26 @@ export class ProjectsComponent {
       this.currentImageIndex =
         (this.currentImageIndex + 1) % this.selectedProject.images.length;
     }
+  }
+
+  prevCardImage(project: Project, event: Event) {
+    event.stopPropagation();
+    if (project.images && project.images.length > 1) {
+      const currentIndex = project.currentImageIndex || 0;
+      project.currentImageIndex = (currentIndex - 1 + project.images.length) % project.images.length;
+    }
+  }
+
+  nextCardImage(project: Project, event: Event) {
+    event.stopPropagation();
+    if (project.images && project.images.length > 1) {
+      const currentIndex = project.currentImageIndex || 0;
+      project.currentImageIndex = (currentIndex + 1) % project.images.length;
+    }
+  }
+
+  getCardImage(project: Project): string {
+    const idx = project.currentImageIndex || 0;
+    return project.images[idx];
   }
 }

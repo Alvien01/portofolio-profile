@@ -6,13 +6,31 @@
         <div class="index-badge">0{{ i + 1 }}</div>
         <div class="image-wrapper">
           <div class="image-container">
-            <img [src]="project.images[0]" alt="{{ project.title }}">
+            <img [src]="getCardImage(project)" alt="{{ project.title }}">
             <div class="image-overlay">
               <button class="btn-explore" (click)="openModal(project)">
                 <span>View Project</span>
                 <i class="icon-arrow">&rarr;</i>
               </button>
             </div>
+            
+            <!-- Card Image Navigation -->
+            <button 
+              *ngIf="project.images.length > 1" 
+              class="card-nav-btn left" 
+              (click)="prevCardImage(project, $event)"
+              aria-label="Previous Image"
+            >
+              &#10094;
+            </button>
+            <button 
+              *ngIf="project.images.length > 1" 
+              class="card-nav-btn right" 
+              (click)="nextCardImage(project, $event)"
+              aria-label="Next Image"
+            >
+              &#10095;
+            </button>
           </div>
           <div class="image-glow"></div>
         </div>
@@ -40,12 +58,26 @@
     <p>{{ selectedProject.description }}</p>
 
     <div class="image-viewer">
-      <button class="nav-btn left" (click)="prevImage()">&#10094;</button>
+      <button 
+        class="nav-btn left" 
+        (click)="prevImage()" 
+        *ngIf="selectedProject.images.length > 1"
+        aria-label="Previous Image"
+      >
+        &#10094;
+      </button>
       <img
         [src]="selectedProject.images[currentImageIndex]"
         alt="{{ selectedProject.title }}"
       />
-      <button class="nav-btn right" (click)="nextImage()">&#10095;</button>
+      <button 
+        class="nav-btn right" 
+        (click)="nextImage()" 
+        *ngIf="selectedProject.images.length > 1"
+        aria-label="Next Image"
+      >
+        &#10095;
+      </button>
     </div>
   </div>
 </div>
