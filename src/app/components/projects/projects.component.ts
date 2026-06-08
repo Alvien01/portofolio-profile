@@ -110,6 +110,13 @@ export class ProjectsComponent {
       images: ['erp-project.test_login.png','erp-project.test_login (1).png', 'erp-project.test_pos.png','erp-project.test_pos (1).png'],
       tech: ['Laravel','Livewire', 'Tailwind','MySQL']
     },
+    {
+      title: 'Slam Team',
+      description: 'Slam Team is a profile and management website for SLAM shooting club members.',
+      demoLink: 'slamteam.vercel.app',
+      images: ['slamteam.vercel.app_.png'],
+      tech: ['Laravel','Angular JS', 'Tailwind','MySQL']
+    },
     
 
   ];
