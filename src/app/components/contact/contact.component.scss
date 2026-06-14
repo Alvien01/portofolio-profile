@@ -71,7 +71,7 @@
         }
       }
 
-      button {
+      button, .submit-btn {
         background: var(--primary);
         color: #000;
         border: none;
@@ -85,6 +85,8 @@
         justify-self: center;
         margin-top: 1rem;
         box-shadow: 0 10px 20px -5px var(--primary-glow);
+        text-decoration: none;
+        display: inline-block;
 
         &:hover {
           transform: translateY(-5px);
@@ -111,7 +113,7 @@
     form {
       gap: 1.5rem;
       
-      button {
+      button, .submit-btn {
         width: 100%;
       }
     }

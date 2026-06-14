@@ -17,7 +17,7 @@
         clean design, optimized performance, and user-friendly interfaces.
       </p>
       <p>
-        With strong problem-solving skills and continuous learning mindset, I aim to deliver 
+        With strong problem-solving skills and continuous learning mindset, I aim to deliver
         impactful digital solutions that help businesses grow.
       </p>
       <div class="skills-highlight">
@@ -29,6 +29,78 @@
       <p class="connect-text">
         Let's connect and create something amazing together!
       </p>
+    </div>
+  </div>
+
+  <!-- Timeline Section -->
+  <div class="timeline-section" data-aos="fade-up">
+    <div class="timeline-tabs">
+      <button
+        class="tab-btn"
+        [class.active]="activeTab === 'edu'"
+        (click)="switchTab('edu')">
+        <i class="ti ti-school"></i> Pendidikan
+      </button>
+      <button
+        class="tab-btn"
+        [class.active]="activeTab === 'work'"
+        (click)="switchTab('work')">
+        <i class="ti ti-briefcase"></i> Pengalaman Kerja
+      </button>
+    </div>
+
+    <!-- Education -->
+    <div class="tab-panel" [class.active]="activeTab === 'edu'">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">2021 – 2025</div>
+          <div class="tl-title">ITN Malang</div>
+          <div class="tl-sub">Teknik Informatika</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">2018 – 2021</div>
+          <div class="tl-title">SMKN 1 Boyolangu Tulungagung</div>
+          <div class="tl-sub">Teknik Komputer dan Jaringan (TKJ)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="tab-panel" [class.active]="activeTab === 'work'">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">
+            Februari 2026 – Sekarang
+            <span class="now-badge">Now</span>
+          </div>
+          <div class="tl-title">Fullstack Website Developer & Shopify Developer</div>
+          <div class="tl-sub">PT Jitu Property</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">
+            Agustus 2024 – Sekarang
+            <span class="now-badge">Now</span>
+          </div>
+          <div class="tl-title">Freelance Content Writer</div>
+          <div class="tl-sub">Ruangbacaku</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">September 2025 – April 2026</div>
+          <div class="tl-title">Fullstack Web Developer</div>
+          <div class="tl-sub">PT Cubiconia</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-period">September 2024 – Maret 2025</div>
+          <div class="tl-title">Content Writer</div>
+          <div class="tl-sub">Siklinik</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
