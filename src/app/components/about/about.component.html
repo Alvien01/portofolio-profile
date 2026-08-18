@@ -1,33 +1,23 @@
-<div class="about">
+<div class="about" *ngIf="profile">
   <h2 data-aos="fade-up">About Me</h2>
   <div class="about-content">
     <div class="image-wrapper" data-aos="fade-right">
       <div class="image-border"></div>
-      <img src="1732717869809.jpeg" alt="About Me">
+      <img [src]="profile.about_image" alt="About Me">
       <div class="glow-effect"></div>
     </div>
     <div class="text" data-aos="fade-left">
       <div class="typing-container">
         <span class="static-text">Hi, I'm</span>
-        <span class="typing-text">Alfin Ardiansyah</span>
+        <span class="typing-text">{{ profile.name }}</span>
       </div>
-      <p>
-        A passionate <b>Web Developer</b> specialized in
-        <b>Laravel</b> and <b>Angular</b>. I also can be a Fullstack or Backend Developer where I enjoy building modern web applications with
-        clean design, optimized performance, and user-friendly interfaces.
-      </p>
-      <p>
-        With strong problem-solving skills and continuous learning mindset, I aim to deliver
-        impactful digital solutions that help businesses grow.
-      </p>
+      <p [innerHTML]="profile.about_text_1"></p>
+      <p>{{ profile.about_text_2 }}</p>
       <div class="skills-highlight">
-        <span class="badge">SEO Analyst</span>
-        <span class="badge">Content Writer</span>
-        <span class="badge">Web Developer</span>
-        <span class="badge">Event Organizer</span>
+        <span class="badge" *ngFor="let h of highlights">{{ h.name }}</span>
       </div>
-      <p class="connect-text">
-        Let's connect and create something amazing together!
+      <p class="connect-text" *ngIf="profile.connect_text">
+        {{ profile.connect_text }}
       </p>
     </div>
   </div>
@@ -39,30 +29,26 @@
         class="tab-btn"
         [class.active]="activeTab === 'edu'"
         (click)="switchTab('edu')">
-        <i class="ti ti-school"></i> Pendidikan
+        <lucide-icon [name]="GraduationCap" size="18"></lucide-icon>
+        <span>Pendidikan</span>
       </button>
       <button
         class="tab-btn"
         [class.active]="activeTab === 'work'"
         (click)="switchTab('work')">
-        <i class="ti ti-briefcase"></i> Pengalaman Kerja
+        <lucide-icon [name]="Briefcase" size="18"></lucide-icon>
+        <span>Pengalaman Kerja</span>
       </button>
     </div>
 
     <!-- Education -->
     <div class="tab-panel" [class.active]="activeTab === 'edu'">
       <div class="timeline">
-        <div class="tl-item">
+        <div class="tl-item" *ngFor="let edu of education">
           <div class="tl-dot"></div>
-          <div class="tl-period">2021 – 2025</div>
-          <div class="tl-title">ITN Malang</div>
-          <div class="tl-sub">Teknik Informatika</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-period">2018 – 2021</div>
-          <div class="tl-title">SMKN 1 Boyolangu Tulungagung</div>
-          <div class="tl-sub">Teknik Komputer dan Jaringan (TKJ)</div>
+          <div class="tl-period">{{ edu.period }}</div>
+          <div class="tl-title">{{ edu.title }}</div>
+          <div class="tl-sub">{{ edu.sub_title }}</div>
         </div>
       </div>
     </div>
@@ -70,35 +56,14 @@
     <!-- Work Experience -->
     <div class="tab-panel" [class.active]="activeTab === 'work'">
       <div class="timeline">
-        <div class="tl-item">
+        <div class="tl-item" *ngFor="let exp of experiences">
           <div class="tl-dot"></div>
           <div class="tl-period">
-            Februari 2026 – Sekarang
-            <span class="now-badge">Now</span>
+            {{ exp.period }}
+            <span class="now-badge" *ngIf="exp.is_current">Now</span>
           </div>
-          <div class="tl-title">Fullstack Website Developer & Shopify Developer</div>
-          <div class="tl-sub">PT Jitu Property</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-period">
-            Agustus 2024 – Sekarang
-            <span class="now-badge">Now</span>
-          </div>
-          <div class="tl-title">Freelance Content Writer</div>
-          <div class="tl-sub">Ruangbacaku</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-period">September 2025 – April 2026</div>
-          <div class="tl-title">Fullstack Web Developer</div>
-          <div class="tl-sub">PT Cubiconia</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-period">September 2024 – Maret 2025</div>
-          <div class="tl-title">Content Writer</div>
-          <div class="tl-sub">Siklinik</div>
+          <div class="tl-title">{{ exp.title }}</div>
+          <div class="tl-sub">{{ exp.company }}</div>
         </div>
       </div>
     </div>

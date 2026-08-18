@@ -1,0 +1,850 @@
+<div class="admin-layout">
+  <!-- Toast Notification -->
+  <div class="toast" *ngIf="toastMessage" [ngClass]="toastType">
+    <span>{{ toastMessage }}</span>
+    <button class="toast-close" (click)="toastMessage = ''">
+      <lucide-icon [name]="X" size="16"></lucide-icon>
+    </button>
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">
+        <lucide-icon [name]="Zap" size="22"></lucide-icon>
+      </div>
+      <div class="brand-text">
+        <h2>Admin Panel</h2>
+        <span>Portfolio CMS</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item" [class.active]="activeTab === 'overview'" (click)="setTab('overview')">
+        <lucide-icon [name]="LayoutDashboard" size="18" class="icon"></lucide-icon>
+        <span>Overview</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'profile'" (click)="setTab('profile')">
+        <lucide-icon [name]="User" size="18" class="icon"></lucide-icon>
+        <span>Profile & About</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'highlights'" (click)="setTab('highlights')">
+        <lucide-icon [name]="Sparkles" size="18" class="icon"></lucide-icon>
+        <span>Highlights</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'education'" (click)="setTab('education')">
+        <lucide-icon [name]="GraduationCap" size="18" class="icon"></lucide-icon>
+        <span>Pendidikan</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'experiences'" (click)="setTab('experiences')">
+        <lucide-icon [name]="Briefcase" size="18" class="icon"></lucide-icon>
+        <span>Pengalaman</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'skills'" (click)="setTab('skills')">
+        <lucide-icon [name]="Wrench" size="18" class="icon"></lucide-icon>
+        <span>Skills</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'certificates'" (click)="setTab('certificates')">
+        <lucide-icon [name]="Award" size="18" class="icon"></lucide-icon>
+        <span>Sertifikat</span>
+      </button>
+      <button class="nav-item" [class.active]="activeTab === 'projects'" (click)="setTab('projects')">
+        <lucide-icon [name]="Folder" size="18" class="icon"></lucide-icon>
+        <span>Projects</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="btn-view-site">
+        <lucide-icon [name]="Globe" size="16" class="icon"></lucide-icon>
+        <span>Lihat Portfolio</span>
+      </a>
+      <button class="btn-logout-sidebar" (click)="onLogout()">
+        <lucide-icon [name]="LogOut" size="16" class="icon"></lucide-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="topbar">
+      <div class="topbar-title">
+        <h1>
+          <span *ngIf="activeTab === 'overview'">Dashboard Overview</span>
+          <span *ngIf="activeTab === 'profile'">Kelola Profile & About</span>
+          <span *ngIf="activeTab === 'highlights'">Kelola Highlights Badge</span>
+          <span *ngIf="activeTab === 'education'">Kelola Riwayat Pendidikan</span>
+          <span *ngIf="activeTab === 'experiences'">Kelola Pengalaman Kerja</span>
+          <span *ngIf="activeTab === 'skills'">Kelola Skills & Framework</span>
+          <span *ngIf="activeTab === 'certificates'">Kelola Sertifikat</span>
+          <span *ngIf="activeTab === 'projects'">Kelola Proyek Portfolio</span>
+        </h1>
+        <p class="subtitle">Sistem manajemen dinamis terhubung ke database backend</p>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="btn-refresh" (click)="refreshData()" title="Reload data dari backend">
+          <lucide-icon [name]="RefreshCw" size="16"></lucide-icon>
+          <span>Refresh Data</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="content-body">
+      <!-- ==================== TAB: OVERVIEW ==================== -->
+      <section *ngIf="activeTab === 'overview'" class="tab-panel">
+        <div class="stats-grid">
+          <div class="stat-card" (click)="setTab('projects')">
+            <div class="stat-icon purple">
+              <lucide-icon [name]="Folder" size="24"></lucide-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-val">{{ portfolio?.projects?.length || 0 }}</span>
+              <span class="stat-label">Projects</span>
+            </div>
+          </div>
+          <div class="stat-card" (click)="setTab('skills')">
+            <div class="stat-icon blue">
+              <lucide-icon [name]="Wrench" size="24"></lucide-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-val">{{ portfolio?.skills?.length || 0 }}</span>
+              <span class="stat-label">Skills & Framework</span>
+            </div>
+          </div>
+          <div class="stat-card" (click)="setTab('certificates')">
+            <div class="stat-icon green">
+              <lucide-icon [name]="Award" size="24"></lucide-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-val">{{ portfolio?.certificates?.length || 0 }}</span>
+              <span class="stat-label">Sertifikat</span>
+            </div>
+          </div>
+          <div class="stat-card" (click)="setTab('experiences')">
+            <div class="stat-icon orange">
+              <lucide-icon [name]="Briefcase" size="24"></lucide-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-val">{{ portfolio?.experiences?.length || 0 }}</span>
+              <span class="stat-label">Pengalaman Kerja</span>
+            </div>
+          </div>
+          <div class="stat-card" (click)="setTab('education')">
+            <div class="stat-icon cyan">
+              <lucide-icon [name]="GraduationCap" size="24"></lucide-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-val">{{ portfolio?.education?.length || 0 }}</span>
+              <span class="stat-label">Riwayat Pendidikan</span>
+            </div>
+          </div>
+          <div class="stat-card" (click)="setTab('highlights')">
+            <div class="stat-icon yellow">
+              <lucide-icon [name]="Sparkles" size="24"></lucide-icon>
+            </div>
+            <div class="stat-info">
+              <span class="stat-val">{{ portfolio?.highlights?.length || 0 }}</span>
+              <span class="stat-label">Highlights</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-overview-box">
+          <h3>Profil Pengguna</h3>
+          <div class="profile-preview-card" *ngIf="portfolio?.profile">
+            <div class="profile-preview-avatar">
+              <img [src]="portfolio?.profile?.profile_image" alt="Profile" />
+            </div>
+            <div class="profile-preview-details">
+              <h4>{{ portfolio?.profile?.name }}</h4>
+              <p class="tagline">{{ portfolio?.profile?.hero_tagline }}</p>
+              <div class="meta-row">
+                <span><strong>Resume CV:</strong> {{ portfolio?.profile?.resume_url }}</span>
+                <span><strong>About Image:</strong> {{ portfolio?.profile?.about_image }}</span>
+              </div>
+              <button class="btn-primary mt-2" (click)="setTab('profile')">
+                <lucide-icon [name]="Pencil" size="14"></lucide-icon>
+                <span>Edit Profile</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: PROFILE ==================== -->
+      <section *ngIf="activeTab === 'profile'" class="tab-panel">
+        <div class="card form-card">
+          <div class="card-header">
+            <h3>Edit Informasi Profile & About</h3>
+            <p>Sesuai tabel <code>profiles</code> pada database</p>
+          </div>
+
+          <form (ngSubmit)="saveProfile()" class="crud-form">
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>Nama Lengkap</label>
+                <input type="text" [(ngModel)]="profileForm.name" name="name" required class="input-control" />
+              </div>
+              <div class="form-group col-6">
+                <label>About Title</label>
+                <input type="text" [(ngModel)]="profileForm.about_title" name="about_title" class="input-control" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Hero Tagline (Tampil di Home)</label>
+              <textarea [(ngModel)]="profileForm.hero_tagline" name="hero_tagline" rows="2" class="input-control"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-6">
+                <label>About Text 1 (Mendukung tag HTML)</label>
+                <textarea [(ngModel)]="profileForm.about_text_1" name="about_text_1" rows="4" class="input-control"></textarea>
+              </div>
+              <div class="form-group col-6">
+                <label>About Text 2</label>
+                <textarea [(ngModel)]="profileForm.about_text_2" name="about_text_2" rows="4" class="input-control"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Connect Text</label>
+              <input type="text" [(ngModel)]="profileForm.connect_text" name="connect_text" class="input-control" />
+            </div>
+
+            <div class="form-row">
+              <!-- Profile Image Upload -->
+              <div class="form-group col-6">
+                <label>Foto Profile</label>
+                <div class="image-uploader-card">
+                  <div class="uploader-preview">
+                    <img [src]="profileImagePreview || profileForm.profile_image || 'profile.jpg'" alt="Profile Preview" />
+                  </div>
+                  <div class="uploader-controls">
+                    <label class="btn-upload-label">
+                      <lucide-icon [name]="Upload" size="16"></lucide-icon>
+                      <span>Pilih Gambar Profil</span>
+                      <input type="file" accept="image/*" (change)="onProfileImageSelected($event)" class="file-input-hidden" />
+                    </label>
+                    <div class="filename-badge" *ngIf="profileForm.profile_image">
+                      <lucide-icon [name]="Image" size="14"></lucide-icon>
+                      <span>{{ profileForm.profile_image }}</span>
+                    </div>
+                    <span class="upload-hint">Nama file <code>{{ profileForm.profile_image }}</code> akan disimpan ke database & folder <code>public/</code></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- About Image Upload -->
+              <div class="form-group col-6">
+                <label>Foto About Me</label>
+                <div class="image-uploader-card">
+                  <div class="uploader-preview">
+                    <img [src]="aboutImagePreview || profileForm.about_image || '1732717869809.jpeg'" alt="About Preview" />
+                  </div>
+                  <div class="uploader-controls">
+                    <label class="btn-upload-label">
+                      <lucide-icon [name]="Upload" size="16"></lucide-icon>
+                      <span>Pilih Gambar About</span>
+                      <input type="file" accept="image/*" (change)="onAboutImageSelected($event)" class="file-input-hidden" />
+                    </label>
+                    <div class="filename-badge" *ngIf="profileForm.about_image">
+                      <lucide-icon [name]="Image" size="14"></lucide-icon>
+                      <span>{{ profileForm.about_image }}</span>
+                    </div>
+                    <span class="upload-hint">Nama file <code>{{ profileForm.about_image }}</code> akan disimpan ke database & folder <code>public/</code></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>File Resume / CV (PDF)</label>
+              <div class="image-uploader-card">
+                <div class="uploader-preview pdf-preview">
+                  <lucide-icon [name]="FileText" size="32"></lucide-icon>
+                </div>
+                <div class="uploader-controls">
+                  <label class="btn-upload-label">
+                    <lucide-icon [name]="Upload" size="16"></lucide-icon>
+                    <span>Pilih File PDF Resume/CV</span>
+                    <input type="file" accept=".pdf,application/pdf" (change)="onResumeFileSelected($event)" class="file-input-hidden" />
+                  </label>
+                  <div class="filename-badge" *ngIf="profileForm.resume_url">
+                    <lucide-icon [name]="FileText" size="14"></lucide-icon>
+                    <span>{{ profileForm.resume_url }}</span>
+                  </div>
+                  <span class="upload-hint">Nama file <code>{{ profileForm.resume_url }}</code> akan disimpan ke database & folder <code>public/</code></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn-primary" [disabled]="isSaving">
+                <lucide-icon [name]="Save" size="16"></lucide-icon>
+                <span *ngIf="!isSaving">Simpan Perubahan Profile</span>
+                <span *ngIf="isSaving">Menyimpan...</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: HIGHLIGHTS ==================== -->
+      <section *ngIf="activeTab === 'highlights'" class="tab-panel">
+        <div class="card form-card mb-4">
+          <div class="card-header">
+            <h3>Tambah Highlight Badge Baru</h3>
+            <p>Badge yang tampil di section About (misal: Web Developer, SEO Analyst, dll)</p>
+          </div>
+          <form (ngSubmit)="addHighlight()" class="inline-form">
+            <div class="form-group flex-1">
+              <label>Nama Keahlian / Badge</label>
+              <input type="text" [(ngModel)]="newHighlightName" name="newHighlightName" placeholder="Contoh: Mobile Developer" required class="input-control" />
+            </div>
+            <div class="form-group w-120">
+              <label>Urutan (Sort)</label>
+              <input type="number" [(ngModel)]="newHighlightSortOrder" name="newHighlightSortOrder" class="input-control" />
+            </div>
+            <button type="submit" class="btn-primary align-self-end" [disabled]="isSaving">
+              <lucide-icon [name]="Plus" size="16"></lucide-icon>
+              <span>Tambah</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="card table-card">
+          <div class="card-header">
+            <h3>Daftar Highlights ({{ portfolio?.highlights?.length || 0 }})</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="crud-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Badge</th>
+                  <th>Sort Order</th>
+                  <th class="text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let h of portfolio?.highlights; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td><span class="badge-item">{{ h.name }}</span></td>
+                  <td>{{ h.sort_order || '-' }}</td>
+                  <td class="text-right">
+                    <button class="btn-danger-sm" (click)="openDeleteConfirm('highlight', h.id, h.name)">
+                      <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+                      <span>Hapus</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="!portfolio?.highlights?.length">
+                  <td colspan="4" class="text-center empty-state">Belum ada highlight.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: EDUCATION ==================== -->
+      <section *ngIf="activeTab === 'education'" class="tab-panel">
+        <div class="d-flex justify-between items-center mb-3">
+          <p class="text-muted">Kelola riwayat pendidikan formal / non-formal</p>
+          <button class="btn-primary" (click)="openAddEducation()">
+            <lucide-icon [name]="Plus" size="16"></lucide-icon>
+            <span>Tambah Pendidikan</span>
+          </button>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-responsive">
+            <table class="crud-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Periode</th>
+                  <th>Institusi / Gelar (Title)</th>
+                  <th>Jurusan / Keterangan (Subtitle)</th>
+                  <th>Sort Order</th>
+                  <th class="text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let edu of portfolio?.education; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td><strong>{{ edu.period }}</strong></td>
+                  <td>{{ edu.title }}</td>
+                  <td>{{ edu.sub_title }}</td>
+                  <td>{{ edu.sort_order || '-' }}</td>
+                  <td class="text-right actions-cell">
+                    <button class="btn-warning-sm" (click)="openEditEducation(edu)">
+                      <lucide-icon [name]="Pencil" size="14"></lucide-icon>
+                      <span>Edit</span>
+                    </button>
+                    <button class="btn-danger-sm" (click)="openDeleteConfirm('education', edu.id, edu.title)">
+                      <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+                      <span>Hapus</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="!portfolio?.education?.length">
+                  <td colspan="6" class="text-center empty-state">Belum ada data pendidikan.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: EXPERIENCES ==================== -->
+      <section *ngIf="activeTab === 'experiences'" class="tab-panel">
+        <div class="d-flex justify-between items-center mb-3">
+          <p class="text-muted">Kelola riwayat karir dan pengalaman kerja</p>
+          <button class="btn-primary" (click)="openAddExperience()">
+            <lucide-icon [name]="Plus" size="16"></lucide-icon>
+            <span>Tambah Pengalaman</span>
+          </button>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-responsive">
+            <table class="crud-table">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Periode</th>
+                  <th>Posisi (Title)</th>
+                  <th>Perusahaan / Project</th>
+                  <th>Status</th>
+                  <th>Sort Order</th>
+                  <th class="text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let exp of portfolio?.experiences; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td><strong>{{ exp.period }}</strong></td>
+                  <td>{{ exp.title }}</td>
+                  <td>{{ exp.company }}</td>
+                  <td>
+                    <span class="badge-now" *ngIf="exp.is_current">Aktif (Now)</span>
+                    <span class="badge-past" *ngIf="!exp.is_current">Selesai</span>
+                  </td>
+                  <td>{{ exp.sort_order || '-' }}</td>
+                  <td class="text-right actions-cell">
+                    <button class="btn-warning-sm" (click)="openEditExperience(exp)">
+                      <lucide-icon [name]="Pencil" size="14"></lucide-icon>
+                      <span>Edit</span>
+                    </button>
+                    <button class="btn-danger-sm" (click)="openDeleteConfirm('experience', exp.id, exp.title + ' di ' + exp.company)">
+                      <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+                      <span>Hapus</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="!portfolio?.experiences?.length">
+                  <td colspan="7" class="text-center empty-state">Belum ada data pengalaman kerja.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: SKILLS ==================== -->
+      <section *ngIf="activeTab === 'skills'" class="tab-panel">
+        <div class="d-flex justify-between items-center mb-3">
+          <p class="text-muted">Kelola logo skills & framework untuk marquee infinite loop</p>
+          <button class="btn-primary" (click)="openAddSkill()">
+            <lucide-icon [name]="Plus" size="16"></lucide-icon>
+            <span>Tambah Skill</span>
+          </button>
+        </div>
+
+        <div class="skills-grid-admin">
+          <div class="skill-card-admin" *ngFor="let skill of portfolio?.skills">
+            <div class="skill-card-img">
+              <img [src]="skill.image_url" [alt]="skill.name" />
+            </div>
+            <div class="skill-card-info">
+              <h4>{{ skill.name }}</h4>
+              <span class="category-pill" [class.framework]="skill.category === 'framework'">
+                {{ skill.category || 'skill' }}
+              </span>
+              <span class="sort-tag">Order: {{ skill.sort_order || '-' }}</span>
+            </div>
+            <div class="skill-card-actions">
+              <button class="btn-warning-sm" (click)="openEditSkill(skill)">
+                <lucide-icon [name]="Pencil" size="14"></lucide-icon>
+              </button>
+              <button class="btn-danger-sm" (click)="openDeleteConfirm('skill', skill.id, skill.name)">
+                <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: CERTIFICATES ==================== -->
+      <section *ngIf="activeTab === 'certificates'" class="tab-panel">
+        <div class="d-flex justify-between items-center mb-3">
+          <p class="text-muted">Kelola sertifikat keahlian dan penghargaan</p>
+          <button class="btn-primary" (click)="openAddCertificate()">
+            <lucide-icon [name]="Plus" size="16"></lucide-icon>
+            <span>Tambah Sertifikat</span>
+          </button>
+        </div>
+
+        <div class="cert-grid-admin">
+          <div class="cert-card-admin" *ngFor="let cert of portfolio?.certificates">
+            <div class="cert-card-img">
+              <img [src]="cert.image_url" [alt]="cert.title" />
+            </div>
+            <div class="cert-card-info">
+              <h4>{{ cert.title }}</h4>
+              <p *ngIf="cert.description" class="desc">{{ cert.description }}</p>
+              <span class="sort-tag">Order: {{ cert.sort_order || '-' }}</span>
+            </div>
+            <div class="cert-card-actions">
+              <button class="btn-warning-sm" (click)="openEditCertificate(cert)">
+                <lucide-icon [name]="Pencil" size="14"></lucide-icon>
+                <span>Edit</span>
+              </button>
+              <button class="btn-danger-sm" (click)="openDeleteConfirm('certificate', cert.id, cert.title)">
+                <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+                <span>Hapus</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB: PROJECTS ==================== -->
+      <section *ngIf="activeTab === 'projects'" class="tab-panel">
+        <div class="d-flex justify-between items-center mb-3">
+          <p class="text-muted">Kelola proyek portofolio, tech stack, dan galeri gambar</p>
+          <button class="btn-primary" (click)="openAddProject()">
+            <lucide-icon [name]="Plus" size="16"></lucide-icon>
+            <span>Tambah Project</span>
+          </button>
+        </div>
+
+        <div class="projects-grid-admin">
+          <div class="project-card-admin" *ngFor="let proj of portfolio?.projects">
+            <div class="project-admin-thumb" *ngIf="proj.images && proj.images.length">
+              <img [src]="proj.images[0]" [alt]="proj.title" />
+              <span class="img-count" *ngIf="proj.images.length > 1">+{{ proj.images.length - 1 }} foto</span>
+            </div>
+            <div class="project-admin-content">
+              <h4>{{ proj.title }}</h4>
+              <p class="desc">{{ proj.description }}</p>
+              <div class="tech-tags">
+                <span class="tech-tag" *ngFor="let t of proj.tech">{{ t }}</span>
+              </div>
+              <div class="project-admin-footer">
+                <span class="sort-tag">Order: {{ proj.sort_order || '-' }}</span>
+                <div class="action-btns">
+                  <button class="btn-warning-sm" (click)="openEditProject(proj)">
+                    <lucide-icon [name]="Pencil" size="14"></lucide-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button class="btn-danger-sm" (click)="openDeleteConfirm('project', proj.id, proj.title)">
+                    <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+                    <span>Hapus</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<!-- ==================== MODALS ==================== -->
+
+<!-- Modal Education -->
+<div class="modal-overlay" *ngIf="showEducationModal" (click)="showEducationModal = false">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingEducationId ? 'Edit Pendidikan' : 'Tambah Pendidikan' }}</h3>
+      <button class="btn-close" (click)="showEducationModal = false">
+        <lucide-icon [name]="X" size="20"></lucide-icon>
+      </button>
+    </div>
+    <form (ngSubmit)="saveEducation()">
+      <div class="form-group">
+        <label>Periode (contoh: 2021 - 2025)</label>
+        <input type="text" [(ngModel)]="educationForm.period" name="period" required class="input-control" />
+      </div>
+      <div class="form-group">
+        <label>Institusi / Sekolah (Title)</label>
+        <input type="text" [(ngModel)]="educationForm.title" name="title" required class="input-control" />
+      </div>
+      <div class="form-group">
+        <label>Jurusan / Keterangan (Subtitle)</label>
+        <input type="text" [(ngModel)]="educationForm.sub_title" name="sub_title" required class="input-control" />
+      </div>
+      <div class="form-group">
+        <label>Sort Order</label>
+        <input type="number" [(ngModel)]="educationForm.sort_order" name="sort_order" class="input-control" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="showEducationModal = false">Batal</button>
+        <button type="submit" class="btn-primary" [disabled]="isSaving">
+          <lucide-icon [name]="Save" size="16"></lucide-icon>
+          <span>Simpan</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Experience -->
+<div class="modal-overlay" *ngIf="showExperienceModal" (click)="showExperienceModal = false">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingExperienceId ? 'Edit Pengalaman' : 'Tambah Pengalaman' }}</h3>
+      <button class="btn-close" (click)="showExperienceModal = false">
+        <lucide-icon [name]="X" size="20"></lucide-icon>
+      </button>
+    </div>
+    <form (ngSubmit)="saveExperience()">
+      <div class="form-group">
+        <label>Periode (contoh: Februari 2026 - Sekarang)</label>
+        <input type="text" [(ngModel)]="experienceForm.period" name="period" required class="input-control" />
+      </div>
+      <div class="form-group">
+        <label>Posisi / Title</label>
+        <input type="text" [(ngModel)]="experienceForm.title" name="title" required class="input-control" />
+      </div>
+      <div class="form-group">
+        <label>Perusahaan / Klien</label>
+        <input type="text" [(ngModel)]="experienceForm.company" name="company" required class="input-control" />
+      </div>
+      <div class="form-group form-check">
+        <label class="checkbox-label">
+          <input type="checkbox" [(ngModel)]="experienceForm.is_current" name="is_current" />
+          <span>Sedang Bekerja di Sini (is_current / Now)</span>
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Sort Order</label>
+        <input type="number" [(ngModel)]="experienceForm.sort_order" name="sort_order" class="input-control" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="showExperienceModal = false">Batal</button>
+        <button type="submit" class="btn-primary" [disabled]="isSaving">
+          <lucide-icon [name]="Save" size="16"></lucide-icon>
+          <span>Simpan</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Skill -->
+<div class="modal-overlay" *ngIf="showSkillModal" (click)="showSkillModal = false">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingSkillId ? 'Edit Skill' : 'Tambah Skill' }}</h3>
+      <button class="btn-close" (click)="showSkillModal = false">
+        <lucide-icon [name]="X" size="20"></lucide-icon>
+      </button>
+    </div>
+    <form (ngSubmit)="saveSkill()">
+      <div class="form-group">
+        <label>Nama Skill / Framework</label>
+        <input type="text" [(ngModel)]="skillForm.name" name="name" required class="input-control" placeholder="Contoh: Angular, Laravel" />
+      </div>
+      
+      <div class="form-group">
+        <label>Logo / Icon Skill</label>
+        <div class="image-uploader-card">
+          <div class="uploader-preview">
+            <img [src]="skillImagePreview || skillForm.image_url || 'Angular_gradient.png'" alt="Skill Preview" />
+          </div>
+          <div class="uploader-controls">
+            <label class="btn-upload-label">
+              <lucide-icon [name]="Upload" size="16"></lucide-icon>
+              <span>Pilih Gambar Logo</span>
+              <input type="file" accept="image/*" (change)="onSkillImageSelected($event)" class="file-input-hidden" />
+            </label>
+            <div class="filename-badge" *ngIf="skillForm.image_url">
+              <lucide-icon [name]="Image" size="14"></lucide-icon>
+              <span>{{ skillForm.image_url }}</span>
+            </div>
+            <span class="upload-hint">Nama file <code>{{ skillForm.image_url }}</code> akan disimpan ke database & folder <code>public/</code></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Kategori</label>
+        <select [(ngModel)]="skillForm.category" name="category" class="input-control">
+          <option value="skill">Skill (Language / Tool)</option>
+          <option value="framework">Framework</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sort Order</label>
+        <input type="number" [(ngModel)]="skillForm.sort_order" name="sort_order" class="input-control" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="showSkillModal = false">Batal</button>
+        <button type="submit" class="btn-primary" [disabled]="isSaving">
+          <lucide-icon [name]="Save" size="16"></lucide-icon>
+          <span>Simpan</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Certificate -->
+<div class="modal-overlay" *ngIf="showCertificateModal" (click)="showCertificateModal = false">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingCertificateId ? 'Edit Sertifikat' : 'Tambah Sertifikat' }}</h3>
+      <button class="btn-close" (click)="showCertificateModal = false">
+        <lucide-icon [name]="X" size="20"></lucide-icon>
+      </button>
+    </div>
+    <form (ngSubmit)="saveCertificate()">
+      <div class="form-group">
+        <label>Judul Sertifikat</label>
+        <input type="text" [(ngModel)]="certificateForm.title" name="title" required class="input-control" />
+      </div>
+      
+      <div class="form-group">
+        <label>Foto / File Gambar Sertifikat</label>
+        <div class="image-uploader-card">
+          <div class="uploader-preview">
+            <img [src]="certificateImagePreview || certificateForm.image_url || 'CodingCamp.png'" alt="Certificate Preview" />
+          </div>
+          <div class="uploader-controls">
+            <label class="btn-upload-label">
+              <lucide-icon [name]="Upload" size="16"></lucide-icon>
+              <span>Pilih Gambar Sertifikat</span>
+              <input type="file" accept="image/*" (change)="onCertificateImageSelected($event)" class="file-input-hidden" />
+            </label>
+            <div class="filename-badge" *ngIf="certificateForm.image_url">
+              <lucide-icon [name]="Image" size="14"></lucide-icon>
+              <span>{{ certificateForm.image_url }}</span>
+            </div>
+            <span class="upload-hint">Nama file <code>{{ certificateForm.image_url }}</code> akan disimpan ke database & folder <code>public/</code></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Deskripsi (Opsional)</label>
+        <textarea [(ngModel)]="certificateForm.description" name="description" rows="2" class="input-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Sort Order</label>
+        <input type="number" [(ngModel)]="certificateForm.sort_order" name="sort_order" class="input-control" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="showCertificateModal = false">Batal</button>
+        <button type="submit" class="btn-primary" [disabled]="isSaving">
+          <lucide-icon [name]="Save" size="16"></lucide-icon>
+          <span>Simpan</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Modal Project -->
+<div class="modal-overlay" *ngIf="showProjectModal" (click)="showProjectModal = false">
+  <div class="modal-card modal-lg" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ editingProjectId ? 'Edit Project' : 'Tambah Project' }}</h3>
+      <button class="btn-close" (click)="showProjectModal = false">
+        <lucide-icon [name]="X" size="20"></lucide-icon>
+      </button>
+    </div>
+    <form (ngSubmit)="saveProject()">
+      <div class="form-group">
+        <label>Judul Project</label>
+        <input type="text" [(ngModel)]="projectForm.title" name="title" required class="input-control" />
+      </div>
+      <div class="form-group">
+        <label>Deskripsi</label>
+        <textarea [(ngModel)]="projectForm.description" name="description" rows="3" class="input-control"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Tech Stack (Pisahkan dengan koma <code>,</code>)</label>
+        <input type="text" [(ngModel)]="projectForm.tech_input" name="tech_input" class="input-control" placeholder="Contoh: Angular, TypeScript, SCSS" />
+      </div>
+      <div class="form-group">
+        <label>Galeri Gambar Project (Bisa Pilih Banyak Gambar Sekaligus)</label>
+        <div class="multi-uploader-wrapper">
+          <label class="btn-upload-label mb-2">
+            <lucide-icon [name]="Upload" size="16"></lucide-icon>
+            <span>+ Pilih / Tambah Gambar Project (Multiple)</span>
+            <input type="file" accept="image/*" multiple (change)="onProjectImagesSelected($event)" class="file-input-hidden" />
+          </label>
+          
+          <div class="project-images-grid" *ngIf="projectForm.images.length > 0">
+            <div class="project-image-item" *ngFor="let img of projectForm.images; let idx = index">
+              <img [src]="getProjectImageUrl(img)" [alt]="img" />
+              <div class="project-image-overlay">
+                <span class="img-name">{{ img }}</span>
+                <button type="button" class="btn-remove-img" (click)="removeProjectImage(idx)" title="Hapus gambar ini">
+                  <lucide-icon [name]="Trash2" size="14"></lucide-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <span class="upload-hint mt-1" *ngIf="projectForm.images.length > 0">Total {{ projectForm.images.length }} gambar. Pastikan file tersimpan di folder <code>public/</code></span>
+          <span class="upload-hint mt-1" *ngIf="projectForm.images.length === 0">Belum ada gambar dipilih. Klik tombol di atas untuk memilih gambar.</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Sort Order</label>
+        <input type="number" [(ngModel)]="projectForm.sort_order" name="sort_order" class="input-control" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" (click)="showProjectModal = false">Batal</button>
+        <button type="submit" class="btn-primary" [disabled]="isSaving">
+          <lucide-icon [name]="Save" size="16"></lucide-icon>
+          <span>Simpan</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ==================== MODAL DELETE CONFIRMATION ==================== -->
+<div class="modal-overlay delete-modal-overlay" *ngIf="showDeleteModal" (click)="cancelDelete()">
+  <div class="modal-card delete-modal-card" (click)="$event.stopPropagation()">
+    <div class="delete-modal-icon">
+      <lucide-icon [name]="Trash2" size="28"></lucide-icon>
+    </div>
+    <div class="delete-modal-content">
+      <h3>Konfirmasi Hapus Data</h3>
+      <p>
+        Apakah Anda yakin ingin menghapus data
+        <span class="delete-highlight-text">"{{ deleteTargetTitle }}"</span>?
+      </p>
+      <span class="delete-warning-sub">Tindakan ini permanen dan tidak dapat dibatalkan.</span>
+    </div>
+    <div class="delete-modal-actions">
+      <button type="button" class="btn-secondary" (click)="cancelDelete()" [disabled]="isDeleting">
+        Batal
+      </button>
+      <button type="button" class="btn-danger-confirm" (click)="executeDelete()" [disabled]="isDeleting">
+        <lucide-icon [name]="Trash2" size="16"></lucide-icon>
+        <span *ngIf="!isDeleting">Ya, Hapus Data</span>
+        <span *ngIf="isDeleting">Menghapus...</span>
+      </button>
+    </div>
+  </div>
+</div>

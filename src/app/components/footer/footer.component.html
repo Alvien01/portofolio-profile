@@ -10,14 +10,14 @@
     
     <form (ngSubmit)="handleLogin()">
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">Email / Username</label>
         <input 
           type="text" 
           id="username" 
           name="username"
           [(ngModel)]="username"
           required
-          placeholder="Enter your username"
+          placeholder="admin@example.com"
           class="form-control"
         />
       </div>
@@ -34,10 +34,17 @@
           class="form-control"
         />
       </div>
+
+      <div *ngIf="errorMessage" style="color: #fca5a5; font-size: 0.85rem; margin-bottom: 0.75rem; text-align: center;">
+        {{ errorMessage }}
+      </div>
       
       <div class="modal-actions">
-        <button type="button" class="btn-cancel" (click)="closeModal()">Cancel</button>
-        <button type="submit" class="btn-submit">Login</button>
+        <button type="button" class="btn-cancel" (click)="closeModal()" [disabled]="isLoading">Cancel</button>
+        <button type="submit" class="btn-submit" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Login</span>
+          <span *ngIf="isLoading">Loading...</span>
+        </button>
       </div>
     </form>
   </div>

@@ -1,16 +1,17 @@
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
-import { SkillsComponent } from './components/skills/skills.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { CertificatesComponent } from './components/certificates/certificates.component';
-import { ContactComponent } from './components/contact/contact.component';
+import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
-  { path: 'skills', component: SkillsComponent },
-  { path: 'projects', component: ProjectsComponent },
-  { path: 'certificates', component: CertificatesComponent },
-  { path: 'contact', component: ContactComponent },
+  { 
+    path: '', 
+    loadComponent: () => import('./components/public-layout/public-layout.component').then(m => m.PublicLayoutComponent) 
+  },
+  { 
+    path: 'admin/login', 
+    loadComponent: () => import('./components/admin/login.component').then(m => m.AdminLoginComponent) 
+  },
+  { 
+    path: 'admin/dashboard', 
+    loadComponent: () => import('./components/admin/dashboard.component').then(m => m.AdminDashboardComponent) 
+  },
+  { path: '**', redirectTo: '' }
 ];

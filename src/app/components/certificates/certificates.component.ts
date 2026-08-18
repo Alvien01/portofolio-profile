@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { PortfolioService } from '../../services/portfolio.service';
+import { Certificate } from '../../models/portfolio.model';
 
 @Component({
   selector: 'app-certificates',
@@ -8,20 +11,24 @@ import { CommonModule } from '@angular/common';
   templateUrl: './certificates.component.html',
   styleUrls: ['./certificates.component.scss'],
 })
-export class CertificatesComponent {
-  certificates = [
-    {
-      title: 'Full Stack Developer Intership - Jitu Property', image: '1726059585873.jpeg',},
-    { title: 'Peserta IFFES IOT - ITN Malang', image: 'Screenshot (160).png' },
-    { title: 'Getting Started with Node-Red HTTP  - Indobot', image: 'Screenshot (157).png' },
-    { title: 'Coding Camp Laravel Class - HariSenin', image: 'CodingCamp.png' },
-    { title: 'Asisten Labolatorium Mobile Programming - ITN Malang', image: 'Serti Alfin2.png' },
-    { title: 'Koordinator Praktikum Pemrograman Visual - ITN Malang', image: 'Serti Alfin.png' },
-  ];
+export class CertificatesComponent implements OnInit, OnDestroy {
+  certificates: Certificate[] = [];
+  selectedCertificate: Certificate | null = null;
+  private sub?: Subscription;
 
-  selectedCertificate: any = null;
+  constructor(private portfolioService: PortfolioService) {}
 
-  openModal(cert: any) {
+  ngOnInit() {
+    this.sub = this.portfolioService.getPortfolio().subscribe(data => {
+      this.certificates = data.certificates || [];
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+  }
+
+  openModal(cert: Certificate) {
     this.selectedCertificate = cert;
   }
 

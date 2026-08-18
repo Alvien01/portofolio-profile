@@ -16,7 +16,7 @@
             
             <!-- Card Image Navigation -->
             <button 
-              *ngIf="project.images.length > 1" 
+              *ngIf="project.images && project.images.length > 1" 
               class="card-nav-btn left" 
               (click)="prevCardImage(project, $event)"
               aria-label="Previous Image"
@@ -24,7 +24,7 @@
               &#10094;
             </button>
             <button 
-              *ngIf="project.images.length > 1" 
+              *ngIf="project.images && project.images.length > 1" 
               class="card-nav-btn right" 
               (click)="nextCardImage(project, $event)"
               aria-label="Next Image"

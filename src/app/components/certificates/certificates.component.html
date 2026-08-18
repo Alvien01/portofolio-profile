@@ -4,7 +4,7 @@
   <div class="cert-grid">
     <div class="cert-item" *ngFor="let cert of certificates; let i = index" data-aos="fade-up" [attr.data-aos-delay]="100 * (i % 3) + 100">
       <div class="cert-img-container">
-        <img [src]="cert.image" [alt]="cert.title" class="cert-img" />
+        <img [src]="cert.image_url" [alt]="cert.title" class="cert-img" />
       </div>
       <h3>{{ cert.title }}</h3>
       <button class="btn-detail" (click)="openModal(cert)">View Detail</button>
@@ -15,7 +15,7 @@
   <div class="modal" *ngIf="selectedCertificate" (click)="closeModal()">
     <div class="modal-content" (click)="$event.stopPropagation()">
       <span class="close" (click)="closeModal()">&times;</span>
-      <img [src]="selectedCertificate.image" [alt]="selectedCertificate.title" />
+      <img [src]="selectedCertificate.image_url" [alt]="selectedCertificate.title" />
       <h3>{{ selectedCertificate.title }}</h3>
     </div>
   </div>

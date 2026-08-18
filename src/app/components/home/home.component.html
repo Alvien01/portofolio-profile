@@ -1,22 +1,19 @@
-<div class="home">
+<div class="home" *ngIf="profile">
   <!-- Animated Background Orbs -->
   <div class="glow-orb orb-1"></div>
   <div class="glow-orb orb-2"></div>
 
   <div class="hero-content">
     <div class="profile-container" data-aos="zoom-in" data-aos-duration="1000">
-      <img src="profile.jpg" alt="Profile" class="profile-img" />
+      <img [src]="profile.profile_image" alt="Profile" class="profile-img" />
     </div>
     
     <div class="typing-wrapper">
-      <h1 class="gradient-text hero-typing">Hi, I'm Alfin Ardiansyah</h1>
+      <h1 class="gradient-text hero-typing">Hi, I'm {{ profile.name }}</h1>
     </div>
     
     <p data-aos="fade-up" data-aos-delay="400">
-      Crafting premium digital experiences through 
-      <span class="highlight text-gradient-1">Web Development</span>, 
-      <span class="highlight text-gradient-2">SEO</span>, and 
-      <span class="highlight text-gradient-3">Creative Content Blog</span>.
+      {{ profile.hero_tagline }}
     </p>
 
     <div class="button-group" data-aos="fade-up" data-aos-delay="600">
@@ -24,7 +21,7 @@
         Explore Projects <span class="arrow">&rarr;</span>
       </button>
 
-      <a href="CV-Alfin-Ardiansyah.pdf" download class="download-btn">
+      <a [href]="profile.resume_url" download class="download-btn">
         Get Resume
       </a>
     </div>
