@@ -22,14 +22,45 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.portfolioService.getPortfolio().subscribe(data => {
       if (data && data.projects) {
-        this.projects = data.projects.map(p => ({
+        this.projects = data.projects.map((p: any) => ({
           ...p,
-          images: Array.isArray(p.images) ? p.images : [],
-          tech: Array.isArray(p.tech) ? p.tech : [],
+          images: this.parseImages(p.images),
+          tech: this.parseTech(p.tech, p.tech_stack),
           currentImageIndex: 0
         }));
       }
     });
+  }
+
+  private parseTech(tech: any, techStack: any): string[] {
+    if (Array.isArray(tech) && tech.length > 0) return tech;
+    if (typeof tech === 'string' && tech.trim()) {
+      try {
+        const parsed = JSON.parse(tech);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {}
+      return tech.split(',').map(s => s.trim()).filter(Boolean);
+    }
+    if (typeof techStack === 'string' && techStack.trim()) {
+      try {
+        const parsed = JSON.parse(techStack);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {}
+      return techStack.split(',').map(s => s.trim()).filter(Boolean);
+    }
+    return [];
+  }
+
+  private parseImages(images: any): string[] {
+    if (Array.isArray(images)) return images.filter(Boolean);
+    if (typeof images === 'string' && images.trim()) {
+      try {
+        const parsed = JSON.parse(images);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {}
+      return [images];
+    }
+    return [];
   }
 
   ngOnDestroy() {

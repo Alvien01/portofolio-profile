@@ -22,7 +22,17 @@ export class PortfolioService {
   loadPortfolio(force: boolean = false): void {
     if (this.loaded && !force) return;
 
-    this.http.get<{ success: boolean; data: PortfolioData }>(this.apiUrl).pipe(
+    // Cache-busting query parameter & no-cache headers to prevent stale browser/CDN caching
+    const timestamp = Date.now();
+    const url = `${this.apiUrl}?_t=${timestamp}`;
+
+    this.http.get<{ success: boolean; data: PortfolioData }>(url, {
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
+    }).pipe(
       tap(res => {
         if (res && res.success && res.data) {
           this.portfolioData$.next(res.data);

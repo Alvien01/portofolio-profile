@@ -543,7 +543,7 @@
               <h4>{{ proj.title }}</h4>
               <p class="desc">{{ proj.description }}</p>
               <div class="tech-tags">
-                <span class="tech-tag" *ngFor="let t of proj.tech">{{ t }}</span>
+                <span class="tech-tag" *ngFor="let t of getProjectTech(proj)">{{ t }}</span>
               </div>
               <div class="project-admin-footer">
                 <span class="sort-tag">Order: {{ proj.sort_order || '-' }}</span>

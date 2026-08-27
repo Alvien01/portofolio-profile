@@ -612,17 +612,39 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     this.showProjectModal = true;
   }
 
-  openEditProject(project: Project) {
+  openEditProject(project: any) {
     this.editingProjectId = project.id || null;
     this.projectImagePreviews = [];
+
+    const techList = this.getProjectTech(project);
+
     this.projectForm = {
-      title: project.title,
+      title: project.title || '',
       description: project.description || '',
-      tech_input: (project.tech || []).join(', '),
+      tech_input: techList.join(', '),
       images: [...(project.images || [])],
       sort_order: project.sort_order || 0
     };
     this.showProjectModal = true;
+  }
+
+  getProjectTech(proj: any): string[] {
+    if (!proj) return [];
+    if (Array.isArray(proj.tech) && proj.tech.length > 0) {
+      return proj.tech;
+    }
+    if (typeof proj.tech_stack === 'string' && proj.tech_stack.trim()) {
+      try {
+        const parsed = JSON.parse(proj.tech_stack);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {
+        return proj.tech_stack.split(',').map((s: string) => s.trim()).filter(Boolean);
+      }
+    }
+    if (Array.isArray(proj.tech_stack) && proj.tech_stack.length > 0) {
+      return proj.tech_stack;
+    }
+    return [];
   }
 
   saveProject() {
@@ -640,6 +662,7 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
       title: this.projectForm.title,
       description: this.projectForm.description,
       tech: techArray,
+      tech_stack: techArray,
       images: this.projectForm.images,
       sort_order: this.projectForm.sort_order
     };
