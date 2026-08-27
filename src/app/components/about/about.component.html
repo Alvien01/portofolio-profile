@@ -22,48 +22,106 @@
     </div>
   </div>
 
-  <!-- Timeline Section -->
+  <!-- Unified Modern Timeline Section -->
   <div class="timeline-section" data-aos="fade-up">
-    <div class="timeline-tabs">
-      <button
-        class="tab-btn"
-        [class.active]="activeTab === 'edu'"
-        (click)="switchTab('edu')">
-        <lucide-icon [name]="GraduationCap" size="18"></lucide-icon>
-        <span>Pendidikan</span>
-      </button>
-      <button
-        class="tab-btn"
-        [class.active]="activeTab === 'work'"
-        (click)="switchTab('work')">
-        <lucide-icon [name]="Briefcase" size="18"></lucide-icon>
-        <span>Pengalaman Kerja</span>
-      </button>
-    </div>
-
-    <!-- Education -->
-    <div class="tab-panel" [class.active]="activeTab === 'edu'">
-      <div class="timeline">
-        <div class="tl-item" *ngFor="let edu of education">
-          <div class="tl-dot"></div>
-          <div class="tl-period">{{ edu.period }}</div>
-          <div class="tl-title">{{ edu.title }}</div>
-          <div class="tl-sub">{{ edu.sub_title }}</div>
-        </div>
+    <!-- Section Sub-Header -->
+    <div class="timeline-header">
+      <div class="header-pill">
+        <lucide-icon [name]="Sparkles" size="14"></lucide-icon>
+        <span>Career & Academic Pathway</span>
       </div>
+      <h3 class="timeline-headline">Pendidikan & Pengalaman Kerja</h3>
+      <p class="timeline-subtext">
+        Rekam jejak integrasi antara fondasi akademis dan pengalaman profesional di industri teknologi.
+      </p>
     </div>
 
-    <!-- Work Experience -->
-    <div class="tab-panel" [class.active]="activeTab === 'work'">
-      <div class="timeline">
-        <div class="tl-item" *ngFor="let exp of experiences">
-          <div class="tl-dot"></div>
-          <div class="tl-period">
-            {{ exp.period }}
-            <span class="now-badge" *ngIf="exp.is_current">Now</span>
+    <!-- Filter Switcher Navigation -->
+    <div class="timeline-filters">
+      <button
+        type="button"
+        class="filter-pill"
+        [class.active]="activeFilter === 'all'"
+        (click)="setFilter('all')">
+        <span class="pill-dot"></span>
+        <span>Semua</span>
+        <span class="pill-badge">{{ timelineItems.length }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="filter-pill pill-exp"
+        [class.active]="activeFilter === 'experience'"
+        (click)="setFilter('experience')">
+        <lucide-icon [name]="Briefcase" size="15"></lucide-icon>
+        <span>Pengalaman Kerja</span>
+        <span class="pill-badge">{{ experienceCount }}</span>
+      </button>
+
+      <button
+        type="button"
+        class="filter-pill pill-edu"
+        [class.active]="activeFilter === 'education'"
+        (click)="setFilter('education')">
+        <lucide-icon [name]="GraduationCap" size="15"></lucide-icon>
+        <span>Pendidikan</span>
+        <span class="pill-badge">{{ educationCount }}</span>
+      </button>
+    </div>
+
+    <!-- Unified Master Timeline Tree -->
+    <div class="unified-timeline">
+      <div class="timeline-track"></div>
+
+      <div class="timeline-items">
+        <div
+          class="timeline-row"
+          *ngFor="let item of filteredTimeline; let i = index"
+          [attr.data-type]="item.type"
+          [class.is-current]="item.is_current"
+          [class.align-left]="i % 2 === 0"
+          [class.align-right]="i % 2 !== 0">
+
+          <!-- Central Node Marker -->
+          <div class="timeline-node">
+            <div class="pulse-beacon" *ngIf="item.is_current"></div>
+            <div class="node-icon-wrap" [ngClass]="item.type">
+              <lucide-icon *ngIf="item.type === 'experience'" [name]="Briefcase" size="16"></lucide-icon>
+              <lucide-icon *ngIf="item.type === 'education'" [name]="GraduationCap" size="16"></lucide-icon>
+            </div>
           </div>
-          <div class="tl-title">{{ exp.title }}</div>
-          <div class="tl-sub">{{ exp.company }}</div>
+
+          <!-- Glass Card Content -->
+          <div class="timeline-card">
+            <!-- Card Header Meta -->
+            <div class="card-meta">
+              <span class="type-pill" [ngClass]="item.type">
+                <lucide-icon *ngIf="item.type === 'experience'" [name]="Briefcase" size="12"></lucide-icon>
+                <lucide-icon *ngIf="item.type === 'education'" [name]="GraduationCap" size="12"></lucide-icon>
+                {{ item.type === 'experience' ? 'Pengalaman' : 'Pendidikan' }}
+              </span>
+
+              <div class="period-info">
+                <lucide-icon [name]="Calendar" size="13"></lucide-icon>
+                <span class="period-text">{{ item.period }}</span>
+                <span class="now-pill" *ngIf="item.is_current">
+                  <span class="live-dot"></span>
+                  Sekarang
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+              <h4 class="card-title">{{ item.title }}</h4>
+              <div class="card-subtitle" *ngIf="item.subtitle">
+                <span class="sub-text">{{ item.subtitle }}</span>
+              </div>
+            </div>
+
+            <!-- Card Bottom Accent / Glow -->
+            <div class="card-accent-bar" [ngClass]="item.type"></div>
+          </div>
         </div>
       </div>
     </div>
