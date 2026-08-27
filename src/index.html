@@ -1,41 +1,67 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" prefix="og: https://ogp.me/ns#">
 <head>
   <meta charset="utf-8">
-  <title>Alfin Ardiansyah | Fullstack Web Developer Portfolio</title>
+  <title>Alfin Ardiansyah | Fullstack Web Developer & SEO Specialist</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="Alfin Ardiansyah | Fullstack Web Developer Portfolio">
-  <meta name="description" content="Portfolio resmi Alfin Ardiansyah - Fullstack Web Developer berpengalaman dengan spesialisasi Angular, Laravel, Express.js, SEO, dan Content Writing. Temukan project & sertifikat profesional.">
-  <meta name="keywords" content="Alfin Ardiansyah, Alfin, Web Developer, Fullstack Developer, Laravel Developer, Angular Developer, SEO Specialist, ITN Malang, Portofolio Alfin, Alfin Ardiansyah Portofolio">
+  <!-- DNS Prefetch & Preconnect for High Performance (Core Web Vitals) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://portofolio-alfin-backend.vercel.app">
+
+  <!-- Primary SEO Meta Tags -->
+  <meta name="title" content="Alfin Ardiansyah | Fullstack Web Developer & SEO Specialist">
+  <meta name="description" content="Portfolio resmi Alfin Ardiansyah - Fullstack Web Developer profesional spesialis Laravel, Angular, Express.js, TypeScript, RESTful API, dan SEO Optimization. Temukan showcase project modern dan sertifikasi keahlian.">
+  <meta name="keywords" content="Alfin Ardiansyah, Alfin, Web Developer, Fullstack Developer, Laravel Developer, Angular Developer, Frontend Developer, Backend Developer, SEO Specialist, ITN Malang, Portofolio Alfin, Jasa Pembuatan Website Malang">
   <meta name="author" content="Alfin Ardiansyah">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="googlebot" content="index, follow">
-  <meta name="theme-color" content="#090a16">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="rating" content="general">
+  <meta name="revisit-after" content="7 days">
+  <meta name="theme-color" content="#06070a">
   
-  <!-- Canonical Link -->
+  <!-- Geo / Local SEO Meta Tags -->
+  <meta name="geo.region" content="ID-JI">
+  <meta name="geo.placename" content="Malang, Jawa Timur, Indonesia">
+  <meta name="geo.position" content="-7.9797;112.6304">
+  <meta name="ICBM" content="-7.9797, 112.6304">
+  
+  <!-- Canonical & Favicon -->
   <link rel="canonical" href="https://portofolio-alfin.site/">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="profile.jpg">
 
-  <!-- Open Graph / Facebook / WhatsApp -->
-  <meta property="og:type" content="website">
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+  <meta property="og:type" content="profile">
   <meta property="og:url" content="https://portofolio-alfin.site/">
   <meta property="og:site_name" content="Alfin Ardiansyah Portfolio">
-  <meta property="og:title" content="Alfin Ardiansyah | Fullstack Web Developer">
-  <meta property="og:description" content="Portfolio resmi Alfin Ardiansyah - Fullstack Web Developer (Laravel, Angular, Express.js) & SEO Specialist.">
+  <meta property="og:title" content="Alfin Ardiansyah | Fullstack Web Developer & SEO Specialist">
+  <meta property="og:description" content="Portfolio resmi Alfin Ardiansyah - Fullstack Web Developer spesialis Laravel, Angular, Express.js, dan SEO. Temukan ragam proyek web modern dan sertifikasi profesional.">
   <meta property="og:image" content="https://portofolio-alfin.site/profile.jpg">
+  <meta property="og:image:secure_url" content="https://portofolio-alfin.site/profile.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Alfin Ardiansyah - Fullstack Web Developer">
   <meta property="og:locale" content="id_ID">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="profile:first_name" content="Alfin">
+  <meta property="profile:last_name" content="Ardiansyah">
+  <meta property="profile:gender" content="male">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://portofolio-alfin.site/">
-  <meta name="twitter:title" content="Alfin Ardiansyah | Fullstack Web Developer">
-  <meta name="twitter:description" content="Portfolio resmi Alfin Ardiansyah - Web Developer, Laravel, Angular, dan SEO Specialist.">
+  <meta name="twitter:title" content="Alfin Ardiansyah | Fullstack Web Developer & SEO Specialist">
+  <meta name="twitter:description" content="Portfolio resmi Alfin Ardiansyah - Fullstack Web Developer spesialis Laravel, Angular, Express.js, dan SEO.">
   <meta name="twitter:image" content="https://portofolio-alfin.site/profile.jpg">
+  <meta name="twitter:image:alt" content="Alfin Ardiansyah - Fullstack Web Developer">
 
-  <!-- Structured Data (JSON-LD) for Google Knowledge Graph & Entity Search -->
+  <!-- Schema.org JSON-LD Structured Data (Person, WebSite, ProfilePage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -44,39 +70,75 @@
         "@type": "Person",
         "@id": "https://portofolio-alfin.site/#person",
         "name": "Alfin Ardiansyah",
-        "alternateName": "Alfin",
+        "alternateName": ["Alfin", "Alvien01"],
         "jobTitle": "Fullstack Web Developer",
         "url": "https://portofolio-alfin.site/",
         "image": "https://portofolio-alfin.site/profile.jpg",
-        "description": "A passionate Fullstack Web Developer specialized in Laravel, Angular, Express.js, and SEO.",
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "ITN Malang"
+        "gender": "https://schema.org/Male",
+        "nationality": {
+          "@type": "Country",
+          "name": "Indonesia"
+        },
+        "description": "Fullstack Web Developer berpengalaman dalam Laravel, Angular, Express.js, TypeScript, RESTful API, dan SEO Optimization.",
+        "alumniOf": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "Institut Teknologi Nasional (ITN) Malang",
+            "sameAs": "https://itn.ac.id"
+          },
+          {
+            "@type": "HighSchool",
+            "name": "SMKN 1 Boyolangu Tulungagung"
+          }
+        ],
+        "worksFor": {
+          "@type": "Organization",
+          "name": "PT Jitu Property"
         },
         "sameAs": [
           "https://github.com/Alvien01",
           "https://www.linkedin.com/in/alfin-ardiansyah-93150a250/",
-          "https://instagram.com/"
+          "https://wa.me/62895412364337"
         ],
         "knowsAbout": [
           "Web Development",
+          "Frontend Development",
+          "Backend Development",
           "Laravel",
           "Angular",
           "Express.js",
           "TypeScript",
           "JavaScript",
-          "Search Engine Optimization (SEO)",
+          "PHP",
           "MySQL",
-          "RESTful API"
+          "Tailwind CSS",
+          "Search Engine Optimization (SEO)",
+          "RESTful API Development"
         ]
       },
       {
         "@type": "WebSite",
         "@id": "https://portofolio-alfin.site/#website",
         "url": "https://portofolio-alfin.site/",
-        "name": "Alfin Ardiansyah Portfolio",
-        "description": "Personal Portfolio & Project Showcase of Alfin Ardiansyah",
+        "name": "Alfin Ardiansyah | Portfolio",
+        "description": "Portofolio Resmi & Showcase Project Web Developer Alfin Ardiansyah",
         "publisher": {
+          "@id": "https://portofolio-alfin.site/#person"
+        },
+        "inLanguage": "id-ID"
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": "https://portofolio-alfin.site/#webpage",
+        "url": "https://portofolio-alfin.site/",
+        "name": "Alfin Ardiansyah - Fullstack Web Developer Portfolio",
+        "isPartOf": {
+          "@id": "https://portofolio-alfin.site/#website"
+        },
+        "about": {
+          "@id": "https://portofolio-alfin.site/#person"
+        },
+        "mainEntity": {
           "@id": "https://portofolio-alfin.site/#person"
         },
         "inLanguage": "id-ID"

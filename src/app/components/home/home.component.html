@@ -5,7 +5,7 @@
 
   <div class="hero-content">
     <div class="profile-container" data-aos="zoom-in" data-aos-duration="1000">
-      <img [src]="profile.profile_image" alt="Profile" class="profile-img" />
+      <img [src]="profile.profile_image" alt="Alfin Ardiansyah - Fullstack Web Developer Profile" class="profile-img" fetchpriority="high" loading="eager" decoding="async" width="220" height="220" />
     </div>
     
     <div class="typing-wrapper">
@@ -17,11 +17,11 @@
     </p>
 
     <div class="button-group" data-aos="fade-up" data-aos-delay="600">
-      <button (click)="scrollTo('projects')" class="view-btn sweep-anim">
+      <button (click)="scrollTo('projects')" class="view-btn sweep-anim" aria-label="Jelajahi Proyek Portofolio Alfin">
         Explore Projects <span class="arrow">&rarr;</span>
       </button>
 
-      <a [href]="profile.resume_url" download class="download-btn">
+      <a [href]="profile.resume_url" download class="download-btn" aria-label="Unduh Resume CV Alfin Ardiansyah">
         Get Resume
       </a>
     </div>
